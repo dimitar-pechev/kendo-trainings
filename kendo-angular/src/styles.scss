@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+
+$table-large-font: 1.2rem;
+.text-center {
+    text-align: center !important;
+}
+
+.team-crest-image {
+    height: 50px;
+}
+
+.table-title,
+.table-cell-position,
+.table-cell-team-name {
+    font-size: $table-large-font;
+}
+
+.edit-form input {
+    width: 100%;
+}
+
+.selected-row {
+    background: lightcoral !important;
+    color: white !important;
+}

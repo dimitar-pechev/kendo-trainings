@@ -1,0 +1,44 @@
+<kendo-grid [data]="data" 
+            [pageSize]="state.take" 
+            [skip]="state.skip" 
+            [sort]="state.sort" 
+            [sortable]="sortable" 
+            [pageable]="pageable"
+            [scrollable]="scrollable"
+            (dataStateChange)="dataStateChange($event)">
+    
+    <ng-template kendoGridToolbarTemplate>
+        <button kendoGridPDFCommand class="k-button k-grid-add-command"><span class='k-icon k-i-file-pdf'> </span>Export to PDF</button>
+    </ng-template>
+
+    <kendo-grid-messages 
+        [noRecords]="noRecordsMessage">        
+    </kendo-grid-messages>
+
+    <kendo-grid-pdf fileName="players.pdf"
+                [allPages]="true" 
+                paperSize="A4" 
+                [repeatHeaders]="true" 
+                [landscape]="true">
+
+  <kendo-grid-pdf-margin top="2cm" left="1cm" right="1cm" bottom="2cm"></kendo-grid-pdf-margin>
+  <ng-template kendoGridPDFTemplate let-pageNum="pageNum" let-totalPages="totalPages">
+    <div class="page-template">
+      <div class="header text-center">
+        {{teamName}}'s Team List
+      </div>
+      <div class="footer text-center">
+        Page {{ pageNum }} of {{ totalPages }}
+      </div>
+    </div>
+  </ng-template>
+
+</kendo-grid-pdf>
+
+    <kendo-grid-column field="name" title="Player"></kendo-grid-column>
+    <kendo-grid-column field="jerseyNumber" title="Number"></kendo-grid-column>
+    <kendo-grid-column field="position" title="Position"></kendo-grid-column>
+    <kendo-grid-column field="nationality" title="Nationality"></kendo-grid-column>
+    <kendo-grid-column field="dateOfBirth" title="Date of Birth"></kendo-grid-column>
+
+</kendo-grid>

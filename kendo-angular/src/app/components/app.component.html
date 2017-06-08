@@ -1,0 +1,19 @@
+<app-grid [data]="data" 
+          [selectedChartData]="selectedChartData"
+          [excelData]="excelData"
+          (selectedItem)="clearSelection()"
+          (stateChange)="dataStateChange($event)"          
+          (add)="addHandler($event)"
+          (edit)="editHandler($event)"
+          (remove)="removeHandler($event)">
+</app-grid>
+
+<app-form-partial [model]="editDataItem" 
+                  [isNew]="isNew"
+                  (save)="saveHandler($event)"
+                  (cancel)="cancelHandler()">
+</app-form-partial>
+
+<app-chart [chartData]="chartData" 
+           (seriesClick)="onSeriesClick($event)">
+</app-chart>

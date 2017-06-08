@@ -1,0 +1,139 @@
+<kendo-grid #grid
+            [data]="data" 
+            [pageSize]="state.take" 
+            [skip]="state.skip" 
+            [sort]="state.sort"  
+            [rowHeight]="rowHeight" 
+            [sortable]="sortable" 
+            [pageable]="pageable"
+            [scrollable]="scrollable" 
+            [height]="height" 
+            [selectable]="selectable"
+            [rowClass]="isHighLighted"
+            (selectionChange)="itemSelected()"
+            (dataStateChange)="dataStateChange($event)" 
+            (edit)="editHandler($event)"             
+            (remove)="removeHandler($event)" 
+            (add)="addHandler($event)">
+
+<kendo-grid-messages [noRecords]="noRecordsMessage">
+</kendo-grid-messages>
+
+<ng-template kendoGridToolbarTemplate>
+  <button kendoGridAddCommand>Add new Team</button>
+  <button kendoGridPDFCommand class="k-button k-grid-add-command"><span class='k-icon k-i-file-pdf'> </span>Export to PDF</button>
+  <button kendoGridExcelCommand class="k-button k-grid-add-command"><span class="k-icon k-i-file-excel"></span>Export to Excel</button>
+</ng-template>
+
+<kendo-grid-column field="crestURI" class="text-center" width="70" [sortable]="false" title="">
+  <ng-template kendoGridCellTemplate let-dataItem>
+    <img src="{{dataItem.crestURI}}" class="team-crest-image" alt="{{dataItem.teamName}}">
+  </ng-template>
+</kendo-grid-column>
+<kendo-grid-column field="position" [width]="90" class="text-center" editor="integer">
+  <ng-template kendoGridHeaderTemplate let-column>
+    <span class="table-title">Position</span>
+  </ng-template>
+  <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+    <span class="table-cell-position">{{rowIndex + 1}}</span>
+  </ng-template>
+</kendo-grid-column>
+<kendo-grid-column field="teamName" title="Team">
+  <ng-template kendoGridHeaderTemplate let-column>
+    <span class="table-title">Team</span>
+  </ng-template>
+  <ng-template kendoGridCellTemplate let-dataItem>
+    <span class="table-cell-team-name">{{dataItem.teamName}}</span>
+  </ng-template>
+</kendo-grid-column>
+<kendo-grid-column field="points" editor="integer" [width]="75" class="text-center" title="Points" [sortable]="false">
+  <ng-template kendoGridHeaderTemplate let-column>
+    <span class="table-title">Points</span>
+  </ng-template>
+  <ng-template kendoGridCellTemplate let-dataItem>
+    <span class="table-cell-position">{{dataItem.points}}</span>
+  </ng-template>
+</kendo-grid-column>
+<kendo-grid-column field="goalDifference" editor="integer" [width]="150" class="text-center" [sortable]="false" title="Goal Difference">
+  <ng-template kendoGridHeaderTemplate let-column>
+    <span class="table-title">Goal Difference</span>
+  </ng-template>
+  <ng-template kendoGridCellTemplate let-dataItem>
+    <span class="table-cell-position">{{dataItem.goalDifference}}</span>
+  </ng-template>
+</kendo-grid-column>
+
+<kendo-grid-command-column class="text-center" width="220">
+  <ng-template kendoGridCellTemplate let-isNew="isNew">
+    <button kendoGridEditCommand class="k-primary">Edit</button>
+    <button kendoGridRemoveCommand>Remove</button>
+    <button kendoGridSaveCommand [disabled]="formGroup?.invalid">{{ isNew ? 'Add' : 'Update' }}</button>
+    <button kendoGridCancelCommand>{{ isNew ? 'Discard changes' : 'Cancel' }}</button>
+  </ng-template>
+</kendo-grid-command-column>
+
+<kendo-grid-excel fileName="teams.xlsx" [fetchData]="excelData">
+
+  <kendo-excelexport-column field="crestURI" title="Crest URI"></kendo-excelexport-column>
+  <kendo-excelexport-column field="position" title="Position"></kendo-excelexport-column>
+  <kendo-excelexport-column field="teamName" title="Team"></kendo-excelexport-column>
+  <kendo-excelexport-column field="points" title="Points"></kendo-excelexport-column>
+  <kendo-excelexport-column field="goalDifference" title="Goal Difference"></kendo-excelexport-column>
+
+</kendo-grid-excel>
+
+<kendo-grid-pdf fileName="teams.pdf" [allPages]="true" paperSize="A4" [repeatHeaders]="true" [landscape]="true">
+
+  <kendo-grid-pdf-margin top="2cm" left="1cm" right="1cm" bottom="2cm"></kendo-grid-pdf-margin>
+
+  <kendo-grid-column field="position" [width]="90" class="text-center" editor="integer">
+    <ng-template kendoGridHeaderTemplate let-column>
+      <span class="table-title">Position</span>
+    </ng-template>
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <span class="table-cell-position">{{dataItem.position}}</span>
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="teamName" title="Team">
+    <ng-template kendoGridHeaderTemplate let-column>
+      <span class="table-title">Team</span>
+    </ng-template>
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <span class="table-cell-team-name">{{dataItem.teamName}}</span>
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="points" editor="integer" [width]="75" class="text-center" title="Points" [sortable]="false">
+    <ng-template kendoGridHeaderTemplate let-column>
+      <span class="table-title">Points</span>
+    </ng-template>
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <span class="table-cell-position">{{dataItem.points}}</span>
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="goalDifference" editor="integer" [width]="150" class="text-center" [sortable]="false" title="Goal Difference">
+    <ng-template kendoGridHeaderTemplate let-column>
+      <span class="table-title">Goal Difference</span>
+    </ng-template>
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <span class="table-cell-position">{{dataItem.goalDifference}}</span>
+    </ng-template>
+  </kendo-grid-column>
+
+  <ng-template kendoGridPDFTemplate let-pageNum="pageNum" let-totalPages="totalPages">
+    <div class="page-template">
+      <div class="header text-center">
+        Premier League Standings
+      </div>
+      <div class="footer text-center">
+        Page {{ pageNum }} of {{ totalPages }}
+      </div>
+    </div>
+  </ng-template>
+
+</kendo-grid-pdf>
+
+<div *kendoGridDetailTemplate="let dataItem">
+  <app-players-partial [dataSourceUrl]="dataItem.links.team.href" [teamName]="dataItem.teamName"></app-players-partial>
+</div>
+
+</kendo-grid>
