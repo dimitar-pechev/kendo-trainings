@@ -1,0 +1,60 @@
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<form [formGroup]="form" (ngSubmit)="submitForm(form)" class="k-form">
+					<h2 class="text-center credentials-heading">Register</h2>
+
+					<div class="k-form-field">
+						<span>Username</span>
+						<input class="k-textbox" placeholder="Your Username" formControlName="username" />
+						<span *ngIf="form.controls.username.touched && (form.controls.username.errors && (form.controls.username.errors.required || form.controls.username.errors.minlength || form.controls.username.errors.maxlength))"
+						 class="text-danger small">Username should be between {{minLengthUsername}} and {{maxLengthUsername}} symbols!</span>
+						<span *ngIf="form.controls.username.touched &&  (form.controls.username.errors && form.controls.username.errors.pattern)"
+						 class="text-danger small">Username should consist only of latin letters or numbers!</span>
+					</div>
+
+					<div [formGroupName]="'passwords'">
+						<div class="k-form-field">
+							<span>Password</span>
+							<input type="password" class="k-textbox" placeholder="Your Password" formControlName="password" />
+							<span *ngIf="form.controls.passwords.controls.password.touched && !form.controls.passwords.controls.password.valid" class="text-danger small">Password should be between {{minLengthPassword}} and {{maxLengthPassword}} symbols!</span>
+						</div>
+
+						<div class="k-form-field">
+							<span>Confirm Password</span>
+							<input type="password" class="k-textbox" placeholder="Confirm Password" formControlName="confirmPassword" />
+							<span *ngIf="form.controls.passwords.controls.confirmPassword.touched && (form.controls.passwords.controls.confirmPassword.errors && form.controls.passwords.controls.confirmPassword.errors.required)"
+							 class="text-danger small">Provide and confirm yopur password!</span>
+							<span *ngIf="form.controls.passwords.controls.confirmPassword.touched && (form.controls.passwords.controls.confirmPassword.errors && form.controls.passwords.controls.confirmPassword.errors.password)"
+							 class="text-danger small">Passwords don't match!</span>
+						</div>
+					</div>
+
+					<div class="k-form-field">
+						<span>Full Name</span>
+						<input class="k-textbox" placeholder="Your Name" formControlName="fullName" />
+						<span *ngIf="form.controls.fullName.touched && (form.controls.fullName.errors && (form.controls.fullName.errors.required || form.controls.fullName.errors.minlength || form.controls.fullName.errors.maxlength))"
+						 class="text-danger small">Full name should be between {{minLengthFullName}} and {{maxLengthFullName}} symbols!</span>
+						<span *ngIf="form.controls.fullName.touched && (form.controls.fullName.errors && form.controls.fullName.errors.pattern)"
+						 class="text-danger small">Name should consist only of latin letters!</span>
+					</div>
+
+					<div class="k-form-field">
+						<span>E-Mail</span>
+						<input type="email" class="k-textbox" placeholder="Your E-Mail" formControlName="email" />
+						<span *ngIf="form.controls.email.touched && !form.controls.email.valid" class="text-danger small">Please enter a valid E-Mail address!</span>
+					</div>
+
+					<div class="k-form-field">
+						<input type="checkbox" id="auth-2fa" class="k-checkbox" formControlName="admin">
+						<label class="k-checkbox-label" for="auth-2fa">Sign up as Admin</label>
+					</div>
+
+					<div class="text-center">
+						<button class="k-button k-primary" [disabled]="form.invalid">Submit</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
