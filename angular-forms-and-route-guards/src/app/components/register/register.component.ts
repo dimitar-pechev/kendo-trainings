@@ -50,7 +50,11 @@ export class RegisterComponent implements OnInit {
 					Validators.maxLength(this.maxLengthPassword)
 				])],
 				confirmPassword: ['', Validators.required],
-			}, { validator: CustomValidators.password }),
+			}, {
+                validator: CustomValidators
+                        .equality
+                        .bind(CustomValidators, 'password', 'confirmPassword')
+            }),
 			fullName: ['', Validators.compose([
 				Validators.required,
 				Validators.minLength(this.minLengthFullName),
