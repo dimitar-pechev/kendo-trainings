@@ -1,5 +1,7 @@
-import { UserGuardService } from './guards/user-guard.service';
-import { AdminGuardService } from './guards/admin-guard.service';
+import { PartialsService } from './services/partials.service';
+import { PlayersService } from './services/players.service';
+import { UserGuardService } from './guards/user.guard';
+import { AdminGuardService } from './guards/admin.guard';
 import { AuthService } from './services/auth.service';
 import { AppRoutingModule } from './app.routing';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,6 +21,8 @@ import { HttpModule } from '@angular/http';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { PartialDirective } from './directives/partial.directive';
+import { PlayersGridComponent } from './components/players-grid/players-grid.component';
 
 @NgModule({
 	declarations: [
@@ -27,7 +31,12 @@ import { AdminComponent } from './components/admin/admin.component';
 		HomeComponent,
 		LoginComponent,
 		ProfileComponent,
-		AdminComponent
+		AdminComponent,
+		PartialDirective,
+		PlayersGridComponent
+	],
+	entryComponents: [
+		PlayersGridComponent
 	],
 	imports: [
 		BrowserModule,
@@ -37,12 +46,14 @@ import { AdminComponent } from './components/admin/admin.component';
 		ReactiveFormsModule,
 		HttpModule,
 		GridModule,
-		InMemoryWebApiModule.forRoot(InMemoryDataService)
+		InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true })
 	],
 	providers: [
 		AuthService,
 		AdminGuardService,
-		UserGuardService
+		UserGuardService,
+		PlayersService,
+		PartialsService
 	],
 	bootstrap: [AppComponent]
 })

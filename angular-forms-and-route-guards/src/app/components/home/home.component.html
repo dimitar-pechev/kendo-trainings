@@ -1,3 +1,14 @@
-<h3 class="text-center">
-	You are home!
-</h3>
+<h2 class="text-center">
+	PL Teams
+</h2>
+
+<ul class="nav nav-tabs">
+	<li *ngFor="let partial of partials" (click)="loadComponent(partial)"><a>{{partial.data.title}}</a></li>
+	<li (click)="renderSimpleTemplate()"><a>Hello, World!</a></li>
+</ul>
+
+<ng-template appPartial></ng-template>
+
+<ng-template let-data="data" #tmpl>
+	<p>Something wicked {{data}}</p>
+</ng-template>

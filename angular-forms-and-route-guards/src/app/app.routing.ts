@@ -1,5 +1,5 @@
-import { UserGuardService } from './guards/user-guard.service';
-import { AdminGuardService } from './guards/admin-guard.service';
+import { UserGuardService } from './guards/user.guard';
+import { AdminGuardService } from './guards/admin.guard';
 import { AdminComponent } from './components/admin/admin.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { LoginComponent } from './components/login/login.component';
