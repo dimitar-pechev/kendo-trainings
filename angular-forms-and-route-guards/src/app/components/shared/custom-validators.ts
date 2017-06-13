@@ -10,4 +10,13 @@ export class CustomValidators {
 			return null
 		}
 	}
+
+    static equality(firstFieldName: string, secondFieldName: string, control: AbstractControl) {
+		const firstField = control.get(firstFieldName);
+		const secondField = control.get(secondFieldName);
+
+		if (firstField.value !== secondField.value) {
+            secondField.setErrors({ [firstFieldName]: true });
+		}
+	}
 }
