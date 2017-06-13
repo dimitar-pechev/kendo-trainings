@@ -1,25 +1,25 @@
+import { ChartPartialComponent } from './../components/chart-partial/chart-partial.component';
 import { PartialItem } from './../models/partial-item';
 import { PlayersGridComponent } from './../components/players-grid/players-grid.component';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class PartialsService {
-
-	constructor() { }
-	getAds() {
+	getPartials() {
 		return [
-			new PartialItem(PlayersGridComponent, {
+			new PartialItem(PlayersGridComponent, 'LFC Players', {
 				sourceUrl: 'http://api.football-data.org/v1/teams/64/players',
-				title: 'Liverpool FC',
-				kur: []
+				state: {
+					skip: 0,
+					take: 10
+				},
+				sortable: false,
+				pageable: true,
+				noRecordsMessage: 'Loading players data...'
 			}),
-			new PartialItem(PlayersGridComponent, {
-				sourceUrl: 'http://api.football-data.org/v1/teams/70/players',
-				title: 'Stoke City FC'
-			}),
-			new PartialItem(PlayersGridComponent, {
-				sourceUrl: 'http://api.football-data.org/v1/teams/72/players',
-				title: 'Swansea FC'
+			new PartialItem(ChartPartialComponent, 'Players by Positions', {
+				sourceUrl: 'http://api.football-data.org/v1/teams/64/players',
+				title: 'LFC Players Grouped by Positions'
 			})
 		];
 	}

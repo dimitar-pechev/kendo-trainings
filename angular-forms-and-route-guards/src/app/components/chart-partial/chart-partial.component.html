@@ -1,0 +1,11 @@
+<kendo-chart [title]="title" [series]="chartSeries">
+	<kendo-chart-series>
+		<kendo-chart-series-item type="column" field="value" categoryField="group" [data]="chartData">
+			<kendo-chart-series-item-tooltip background="#FF6358">
+				<ng-template let-value="value">
+					{{ value === 1 ? value + ' player' : value + ' players' }}
+				</ng-template>
+			</kendo-chart-series-item-tooltip>
+		</kendo-chart-series-item>
+	</kendo-chart-series>
+</kendo-chart>

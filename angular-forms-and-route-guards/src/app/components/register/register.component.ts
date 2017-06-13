@@ -1,4 +1,4 @@
-import { CustomValidators } from './../shared/custom-validators';
+import { CustomValidators } from './../../utils/custom-validators';
 import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -51,10 +51,10 @@ export class RegisterComponent implements OnInit {
 				])],
 				confirmPassword: ['', Validators.required],
 			}, {
-                validator: CustomValidators
-                        .equality
-                        .bind(CustomValidators, 'password', 'confirmPassword')
-            }),
+					validator: CustomValidators
+						.equality
+						.bind(CustomValidators, 'password', 'confirmPassword')
+				}),
 			fullName: ['', Validators.compose([
 				Validators.required,
 				Validators.minLength(this.minLengthFullName),

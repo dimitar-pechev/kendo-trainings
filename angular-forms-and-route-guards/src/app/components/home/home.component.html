@@ -3,12 +3,12 @@
 </h2>
 
 <ul class="nav nav-tabs">
-	<li *ngFor="let partial of partials" (click)="loadComponent(partial)"><a>{{partial.data.title}}</a></li>
-	<li (click)="renderSimpleTemplate()"><a>Hello, World!</a></li>
+	<li *ngFor="let partial of partials" (click)="loadComponent(partial)"><a>{{partial.name}}</a></li>
+	<li (click)="renderSimpleTemplate()"><a>Simple Template</a></li>
 </ul>
 
-<ng-template appPartial></ng-template>
+<ng-template #placeholder></ng-template>
 
-<ng-template let-data="data" #tmpl>
-	<p>Something wicked {{data}}</p>
+<ng-template let-data="data" #template>
+	<p>Simple template {{data}}</p>
 </ng-template>

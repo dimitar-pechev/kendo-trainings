@@ -11,18 +11,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { GridModule } from '@progress/kendo-angular-grid';
+import { ChartsModule } from '@progress/kendo-angular-charts';
+import 'hammerjs';
 
 import { AppComponent } from './components/app.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
-
 import { InMemoryDataService } from './services/in-memory-data.service';
 import { HttpModule } from '@angular/http';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AdminComponent } from './components/admin/admin.component';
-import { PartialDirective } from './directives/partial.directive';
 import { PlayersGridComponent } from './components/players-grid/players-grid.component';
+import { ChartPartialComponent } from './components/chart-partial/chart-partial.component';
 
 @NgModule({
 	declarations: [
@@ -32,11 +33,12 @@ import { PlayersGridComponent } from './components/players-grid/players-grid.com
 		LoginComponent,
 		ProfileComponent,
 		AdminComponent,
-		PartialDirective,
-		PlayersGridComponent
+		PlayersGridComponent,
+		ChartPartialComponent
 	],
 	entryComponents: [
-		PlayersGridComponent
+		PlayersGridComponent,
+		ChartPartialComponent
 	],
 	imports: [
 		BrowserModule,
@@ -46,6 +48,7 @@ import { PlayersGridComponent } from './components/players-grid/players-grid.com
 		ReactiveFormsModule,
 		HttpModule,
 		GridModule,
+		ChartsModule,
 		InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true })
 	],
 	providers: [
@@ -53,7 +56,7 @@ import { PlayersGridComponent } from './components/players-grid/players-grid.com
 		AdminGuardService,
 		UserGuardService,
 		PlayersService,
-		PartialsService
+		PartialsService,
 	],
 	bootstrap: [AppComponent]
 })

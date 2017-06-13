@@ -2,33 +2,32 @@ import { HttpModule } from '@angular/http';
 import { PlayersService } from './../../services/players.service';
 import { GridDataResult } from '@progress/kendo-angular-grid/dist/es/main';
 import { State } from '@progress/kendo-data-query/dist/es/state';
-import { GridPartial } from './../../models/gird-partial.interface';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, Injector } from '@angular/core';
 import { DataStateChangeEvent } from '@progress/kendo-angular-grid/dist/es/change-event-args.interface';
 
 @Component({
 	selector: 'app-players-grid',
 	templateUrl: './players-grid.component.html'
 })
-export class PlayersGridComponent implements OnInit, GridPartial {
-	@Input() data: Object;
-	gridView: GridDataResult;
-	state: State;
+export class PlayersGridComponent implements OnInit {
+	sourceUrl: string;
 	sortable: boolean;
 	pageable: boolean;
 	noRecordsMessage: string;
+	state: State;
+	data: GridDataResult;
 
-	constructor(private playersService: PlayersService) { }
+	constructor(
+		private playersService: PlayersService,
+		private injector: Injector
+	) { }
 
 	ngOnInit() {
-		this.state = {
-			skip: 0,
-			take: 10
-		};
-
-		this.sortable = false;
-		this.pageable = true;
-		this.noRecordsMessage = 'Loading players data...';
+		this.sourceUrl = this.injector.get('sourceUrl');
+		this.state = this.injector.get('state');
+		this.sortable = this.injector.get('sortable');
+		this.pageable = this.injector.get('pageable');
+		this.noRecordsMessage = this.injector.get('noRecordsMessage');
 		this.getPlayersData();
 	}
 
@@ -38,9 +37,9 @@ export class PlayersGridComponent implements OnInit, GridPartial {
 	}
 
 	private getPlayersData() {
-		this.playersService.getPlayers(this.data['sourceUrl'], this.state.take, this.state.skip)
+		this.playersService.getPlayers(this.sourceUrl, this.state.take, this.state.skip)
 			.subscribe(data => {
-				this.gridView = data;
+				this.data = data;
 			});
 	}
 }

@@ -1,10 +1,15 @@
-import { Http } from '@angular/http';
-import { PlayersGridComponent } from './../players-grid/players-grid.component';
-import { GridPartial } from './../../models/gird-partial.interface';
-import { PartialDirective } from './../../directives/partial.directive';
 import { PartialItem } from './../../models/partial-item';
 import { PartialsService } from './../../services/partials.service';
-import { Component, OnInit, ComponentFactoryResolver, ViewChild, ElementRef, TemplateRef, ViewContainerRef } from '@angular/core';
+import {
+	Component,
+	OnInit,
+	ComponentFactoryResolver,
+	ViewChild,
+	TemplateRef,
+	ViewContainerRef,
+	Injector,
+	ReflectiveInjector
+} from '@angular/core';
 
 @Component({
 	selector: 'app-home',
@@ -12,8 +17,10 @@ import { Component, OnInit, ComponentFactoryResolver, ViewChild, ElementRef, Tem
 })
 export class HomeComponent implements OnInit {
 	partials: PartialItem[];
-	@ViewChild(PartialDirective) partialHost: PartialDirective;
-	@ViewChild('tmpl') template: TemplateRef<any>;
+	@ViewChild('placeholder', { read: ViewContainerRef }) viewContainerRef: ViewContainerRef;
+	@ViewChild('template') template: TemplateRef<any>;
+
+	private componentsCache: Object;
 
 	constructor(
 		private componentFactoryResolver: ComponentFactoryResolver,
@@ -21,24 +28,40 @@ export class HomeComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.partials = this.partialsService.getAds();
+		this.componentsCache = {};
+		this.partials = this.partialsService.getPartials();
 		this.loadComponent(this.partials[0]);
 	}
 
-	private loadComponent(partial) {
-		const componentFactory = this.componentFactoryResolver.resolveComponentFactory(partial.component);
-		const viewContainerRef = this.partialHost.viewContainerRef;
-		viewContainerRef.clear();
-		const componentRef = viewContainerRef.createComponent(componentFactory);
+	private loadComponent(partial: PartialItem) {
+		this.viewContainerRef.detach(0);
 
-		Object
-			.keys(partial)
-			.forEach(key => componentRef.instance[key] = partial[key]);
+		if (this.componentsCache[partial.name]) {
+			this.viewContainerRef.insert(this.componentsCache[partial.name]);
+			return;
+		}
+
+		const properties = Object.keys(partial.data)
+			.map((propertyName) => {
+				return {
+					provide: propertyName,
+					useValue: partial.data[propertyName]
+				};
+			});
+
+		const injector = ReflectiveInjector.resolveAndCreate(properties);
+		const componentFactory = this.componentFactoryResolver.resolveComponentFactory(partial.component);
+		const componentRef = this.viewContainerRef.createComponent(componentFactory, 0, injector);
+
+		// Object
+		// 	.keys(partial.data)
+		// 	.forEach(key => componentRef.instance[key] = partial.data[key]);
+
+		this.componentsCache[partial.name] = componentRef.hostView;
 	}
 
 	private renderSimpleTemplate() {
-		const viewContainerRef = this.partialHost.viewContainerRef;
-		viewContainerRef.clear();
-		viewContainerRef.createEmbeddedView(this.template, { data: 'something' });
+		this.viewContainerRef.detach(0);
+		this.viewContainerRef.createEmbeddedView(this.template, { data: 'this way comes...' });
 	}
 }

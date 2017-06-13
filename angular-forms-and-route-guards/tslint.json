@@ -55,6 +55,9 @@
       "ignore-params"
     ],
     "no-misused-new": true,
+    "no-consecutive-blank-lines": [
+      true
+    ],
     "no-non-null-assertion": true,
     "no-shadowed-variable": true,
     "no-string-literal": false,
