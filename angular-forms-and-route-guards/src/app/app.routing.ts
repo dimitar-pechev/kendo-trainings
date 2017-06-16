@@ -14,7 +14,6 @@ const routes: Routes = [
 	{ path: 'home', component: HomeComponent },
 	{ path: 'stats/players/:id', component: PlayerProfileComponent },
 	{ path: 'stats/:tab', component: PlayersStatsComponent },
-	{ path: 'stats', component: PlayersStatsComponent },
 	{ path: 'register', component: RegisterComponent },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'profile', component: ProfileComponent, canActivate: [UserGuardService] },

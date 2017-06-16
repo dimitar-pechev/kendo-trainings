@@ -1,12 +1,9 @@
-import { GridSettings } from './../../models/grid-settings.model';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { SortDescriptor } from '@progress/kendo-data-query/dist/es/sort-descriptor';
-import { HttpModule } from '@angular/http';
-import { PlayersService } from './../../services/players.service';
-import { GridDataResult } from '@progress/kendo-angular-grid/dist/es/main';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { GridDataResult, DataStateChangeEvent } from '@progress/kendo-angular-grid';
 import { State } from '@progress/kendo-data-query/dist/es/state';
-import { Component, OnInit, Injector, AfterViewChecked } from '@angular/core';
-import { DataStateChangeEvent } from '@progress/kendo-angular-grid/dist/es/change-event-args.interface';
+import { GridSettings } from './../../models/grid-settings.model';
+import { PlayersService } from './../../services/players.service';
 
 @Component({
 	selector: 'app-players-grid',

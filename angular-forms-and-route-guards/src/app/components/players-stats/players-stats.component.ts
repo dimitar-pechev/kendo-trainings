@@ -11,18 +11,17 @@ import {
 	ViewChild,
 	TemplateRef,
 	ViewContainerRef,
-	ReflectiveInjector
+	ReflectiveInjector,
+	OnDestroy
 } from '@angular/core';
 
 @Component({
 	selector: 'app-players-stats',
 	templateUrl: './players-stats.component.html'
 })
-export class PlayersStatsComponent implements OnInit {
+export class PlayersStatsComponent implements OnInit, OnDestroy {
 	partials: PartialItem[];
 	@ViewChild('container', { read: ViewContainerRef }) viewContainerRef: ViewContainerRef;
-	@ViewChild('template') template: TemplateRef<any>;
-
 	private componentsCache: Object;
 
 	constructor(
@@ -34,35 +33,15 @@ export class PlayersStatsComponent implements OnInit {
 	ngOnInit() {
 		this.componentsCache = {};
 		this.partials = this.partialsService.getPartials();
-
 		this.route.params
 			.subscribe(params => {
 				const targetPartial = this.partials.find(p => p.routeValue === params.tab);
-				this.loadComponent(targetPartial || this.partials[0]);
+				this.partialsService.loadPartial(targetPartial || this.partials[0], this.viewContainerRef, this.componentsCache);
 			});
 	}
 
-	private loadComponent(partial: PartialItem) {
-		this.viewContainerRef.detach(0);
-
-		if (this.componentsCache[partial.name]) {
-			this.viewContainerRef.insert(this.componentsCache[partial.name]);
-			return;
-		}
-
-		const injector = ReflectiveInjector.resolveAndCreate([{
-			provide: partialsSettings[partial.data.constructor.name],
-			useValue: partial.data
-		}]);
-
-		const componentFactory = this.componentFactoryResolver.resolveComponentFactory(partial.component);
-		const componentRef = this.viewContainerRef.createComponent(componentFactory, 0, injector);
-
-		this.componentsCache[partial.name] = componentRef.hostView;
-	}
-
-	private renderSimpleTemplate() {
-		this.viewContainerRef.detach(0);
-		const view = this.viewContainerRef.createEmbeddedView(this.template, { data: 'this way comes...' });
+	ngOnDestroy() {
+		this.viewContainerRef.clear();
+		this.componentsCache = {};
 	}
 }

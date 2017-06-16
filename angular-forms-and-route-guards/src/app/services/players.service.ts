@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Observable';
-import { Http, Headers, Response } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/observable/of';
 import { SortDescriptor } from '@progress/kendo-data-query/dist/es/sort-descriptor';

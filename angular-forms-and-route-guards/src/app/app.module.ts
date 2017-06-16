@@ -24,7 +24,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { PlayersGridComponent } from './components/players-grid/players-grid.component';
-import { ChartPartialComponent } from './components/chart-partial/chart-partial.component';
+import { ChartPartialComponent } from './components/positions-chart/chart-partial.component';
 import { PlayersStatsComponent } from './components/players-stats/players-stats.component';
 import { PlayerProfileComponent } from './components/player-profile/player-profile.component';
 

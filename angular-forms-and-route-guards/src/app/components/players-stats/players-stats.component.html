@@ -1,14 +1,9 @@
 <h2 class="text-center">
-	PL Teams
+	Stats
 </h2>
 
 <ul class="nav nav-tabs">
 	<li *ngFor="let partial of partials"><a routerLink="/stats/{{partial.routeValue}}">{{partial.name}}</a></li>
-	<li (click)="renderSimpleTemplate()"><a>Simple Template</a></li>
 </ul>
 
 <ng-container #container></ng-container>
-
-<ng-template let-data="data" #template>
-	<p>Simple template {{data}}</p>
-</ng-template>

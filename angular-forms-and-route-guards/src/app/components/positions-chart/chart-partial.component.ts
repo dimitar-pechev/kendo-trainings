@@ -1,8 +1,7 @@
 import { Router } from '@angular/router';
-import { GridSettings } from './../../models/grid-settings.model';
 import { ChartSettings } from './../../models/chart-settings.model';
 import { PlayersService } from './../../services/players.service';
-import { Component, OnInit, Input, Injector } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
 	selector: 'app-chart-partial',
