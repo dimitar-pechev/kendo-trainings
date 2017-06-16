@@ -5,7 +5,9 @@
             [sort]="state.sort"  
             [sortable]="sortable" 
             [pageable]="pageable"
-            (dataStateChange)="dataStateChange($event)">
+            [selectable]="selectable"
+            (dataStateChange)="dataStateChange($event)"
+            (selectionChange)="selectionChange($event)">
 
 <kendo-grid-messages [noRecords]="noRecordsMessage">
 </kendo-grid-messages>
@@ -13,7 +15,7 @@
 <kendo-grid-column field="name" title="Player"></kendo-grid-column>
 <kendo-grid-column field="jerseyNumber" title="Number"></kendo-grid-column>
 <kendo-grid-column field="position" title="Position"></kendo-grid-column>
-<kendo-grid-column field="nationality" title="Nationaluty"></kendo-grid-column>
+<kendo-grid-column field="nationality" title="Nationality"></kendo-grid-column>
 <kendo-grid-column field="contractUntil" title="Contract Until"></kendo-grid-column>
 
 </kendo-grid>

@@ -10,12 +10,13 @@
 		</div>
 		<div class="navbar-collapse collapse" id="navbar-main">
 			<ul class="nav navbar-nav">
+				<li><a routerLinkActive="active" routerLink="/stats">Stats</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a *ngIf="isLoggedIn && isAdmin" routerLink="/admin">Admin</a></li>
-				<li><a *ngIf="isLoggedIn" routerLink="/profile">Profile</a></li>
-				<li><a *ngIf="!isLoggedIn" routerLink="/login">Login</a></li>
-				<li><a *ngIf="!isLoggedIn" routerLink="/register">Register</a></li>
+				<li><a *ngIf="isLoggedIn && isAdmin" routerLinkActive="active" routerLink="/admin">Admin</a></li>
+				<li><a *ngIf="isLoggedIn" routerLinkActive="active" routerLink="/profile">Profile</a></li>
+				<li><a *ngIf="!isLoggedIn" routerLinkActive="active" routerLink="/login">Login</a></li>
+				<li><a *ngIf="!isLoggedIn" routerLinkActive="active" routerLink="/register">Register</a></li>
 				<li><a *ngIf="isLoggedIn" class="cursor-pointer" (click)="logout()">Logout</a></li>
 			</ul>
 		</div>

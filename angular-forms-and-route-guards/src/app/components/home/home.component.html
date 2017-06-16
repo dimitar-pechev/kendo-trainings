@@ -1,14 +1,1 @@
-<h2 class="text-center">
-	PL Teams
-</h2>
-
-<ul class="nav nav-tabs">
-	<li *ngFor="let partial of partials" (click)="loadComponent(partial)"><a>{{partial.name}}</a></li>
-	<li (click)="renderSimpleTemplate()"><a>Simple Template</a></li>
-</ul>
-
-<ng-template #placeholder></ng-template>
-
-<ng-template let-data="data" #template>
-	<p>Simple template {{data}}</p>
-</ng-template>
+<h1 class="text-center">Welcome home!</h1>

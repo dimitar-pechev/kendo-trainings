@@ -1,3 +1,5 @@
+import { PlayerProfileComponent } from './components/player-profile/player-profile.component';
+import { PlayersStatsComponent } from './components/players-stats/players-stats.component';
 import { UserGuardService } from './guards/user.guard';
 import { AdminGuardService } from './guards/admin.guard';
 import { AdminComponent } from './components/admin/admin.component';
@@ -9,12 +11,16 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-	{ path: '', redirectTo: '/home', pathMatch: 'full' },
 	{ path: 'home', component: HomeComponent },
+	{ path: 'stats/players/:id', component: PlayerProfileComponent },
+	{ path: 'stats/:tab', component: PlayersStatsComponent },
+	{ path: 'stats', component: PlayersStatsComponent },
 	{ path: 'register', component: RegisterComponent },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'profile', component: ProfileComponent, canActivate: [UserGuardService] },
-	{ path: 'admin', component: AdminComponent, canActivate: [AdminGuardService] }
+	{ path: 'admin', component: AdminComponent, canActivate: [AdminGuardService] },
+	{ path: '', redirectTo: '/home', pathMatch: 'full' },
+	{ path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
 
 @NgModule({

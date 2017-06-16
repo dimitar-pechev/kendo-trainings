@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { GridSettings } from './../../models/grid-settings.model';
+import { ChartSettings } from './../../models/chart-settings.model';
 import { PlayersService } from './../../services/players.service';
 import { Component, OnInit, Input, Injector } from '@angular/core';
 
@@ -12,12 +15,13 @@ export class ChartPartialComponent implements OnInit {
 
 	constructor(
 		private playersService: PlayersService,
-		private injector: Injector
+		private settings: ChartSettings,
+		private router: Router
 	) { }
 
 	ngOnInit() {
-		this.sourceUrl = this.injector.get('sourceUrl');
-		this.title = this.injector.get('title');
+		this.sourceUrl = this.settings.sourceUrl;
+		this.title = this.settings.title;
 		this.loadChartData();
 	}
 
