@@ -1,5 +1,6 @@
+import { ChartSettings } from './../models/chart-settings.model';
+import { GridSettings } from './../models/grid-settings.model';
 import { Injectable, ViewContainerRef, ReflectiveInjector, ComponentFactoryResolver } from '@angular/core';
-import { partialsSettings } from './../models/index';
 import { PartialItem } from './../models/partial-item.model';
 import { ChartPartialComponent } from './../components/positions-chart/chart-partial.component';
 import { PlayersGridComponent } from './../components/players-grid/players-grid.component';
@@ -28,8 +29,8 @@ export class PartialsService {
 
 	getPartials() {
 		return [
-			new PartialItem(PlayersGridComponent, 'LFC Players', new partialsSettings.GridSettings(gridSettings), 'grid'),
-			new PartialItem(ChartPartialComponent, 'Players by Positions', new partialsSettings.ChartSettings(chartSettings), 'chart')
+			new PartialItem(PlayersGridComponent, 'LFC Players', new GridSettings(gridSettings), 'grid'),
+			new PartialItem(ChartPartialComponent, 'Players by Positions', new ChartSettings(chartSettings), 'chart')
 		];
 	}
 
@@ -42,7 +43,7 @@ export class PartialsService {
 		}
 
 		const injector = ReflectiveInjector.resolveAndCreate([{
-			provide: partialsSettings[partial.data.constructor.name],
+			provide: partial.data.constructor,
 			useValue: partial.data
 		}]);
 
