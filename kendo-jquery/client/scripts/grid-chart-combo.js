@@ -28,8 +28,8 @@ const schema = {
 };
 
 const dataSource = new kendo.data.DataSource({
-    // serverPaging: true,
-    // serverSorting: true,
+    serverPaging: true,
+    serverSorting: true,
     offlineStorage: 'players-offline',
     pageSize: 10,
     batch: true,
@@ -39,7 +39,8 @@ const dataSource = new kendo.data.DataSource({
             url: editPlayerUrl,
             method: 'PUT',
             dataType: 'json'
-        }, create: {
+        },
+        create: {
             url: createPlayerUrl,
             method: 'POST',
             dataType: 'json'
@@ -115,7 +116,7 @@ function onSave(ev) {
 function getDetails(ev) {
     ev.preventDefault();
     const player = this.dataItem($(ev.currentTarget).closest('tr'));
-    console.log(`${player.name} - ${player.position}`);
+    console.log(player.id);
 }
 
 function onRowExpanded(ev) {
@@ -143,6 +144,7 @@ function initChart() {
             position: 'bottom',
             text: 'Player positions'
         },
+        theme: 'material',
         legend: {
             visible: false
         },
@@ -153,7 +155,8 @@ function initChart() {
         seriesDefaults: {
             labels: {
                 visible: true,
-                background: 'green',
+                background: '#3F51B5',
+                color: '#fff',
                 template: '#= category #: \n #= value#%'
             }
         },

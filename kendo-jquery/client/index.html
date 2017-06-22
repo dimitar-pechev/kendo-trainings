@@ -5,11 +5,12 @@
     <meta charset="utf-8">
     <title>Kendo Test</title>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2017.2.504/styles/kendo.common.min.css">
     <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2017.2.504/styles/kendo.rtl.min.css">
-    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2017.2.504/styles/kendo.default.min.css">
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2017.2.504/styles/kendo.material.min.css">
     <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2017.2.504/styles/kendo.mobile.all.min.css">
-    <link rel="stylesheet" href="/public/main.css">
+    <link rel="stylesheet" href="/public/css/main.css">
 
     <script src="http://code.jquery.com/jquery-1.12.3.min.js"></script>
     <script src="http://kendo.cdn.telerik.com/2017.2.504/js/angular.min.js"></script>
@@ -17,16 +18,45 @@
     <script src="http://kendo.cdn.telerik.com/2017.2.504/js/kendo.all.min.js"></script>
 </head>
 
-<div id="grid"></div>
-<div id="chart"></div>
-<script id="template" type="text/x-kendo-template">
-    <div class="player-photo" style="background-image: url('https://s3.amazonaws.com/catjira2-production/user_profiles/images/000/000/731/medium/default-profile-5.png')"></div>
-    <div class="player-name">#: data.name #</div>
-</script>
-<script src="/public/http-requester.js"></script>
-<script src="/public/main.js"></script>
-
 <body>
+
+    <div id="grid"></div>
+    <script id="template" type="text/x-kendo-template">
+        <div class="player-photo" style="background-image: url('https://s3.amazonaws.com/catjira2-production/user_profiles/images/000/000/731/medium/default-profile-5.png')"></div>
+        <div class="player-name">#: data.name #</div>
+    </script>
+
+    <div id="chart"></div>
+
+    <div id="stock-chart"></div>
+
+    <textarea style="display: none" id="editor"></textarea>
+
+    <div id="scheduler"></div>
+
+    <select style="display: none" id="dropdownlist"></select>
+
+    <script id="dropdown-no-data" type="text/template">
+        <strong>No Data...</strong>
+    </script>
+
+    <button style="display: none" id="open-window" class="k-button">Open Window</button>
+    <div id="window" style="display: none">
+        Sample Content
+    </div>
+
+    <input style="display: none" id="upload" type="file">
+
+    <!--<script src="/public/scripts/grid-chart-combo.js"></script>-->
+    <!--<script src="/public/scripts/grid.js"></script>-->
+    <!--<script src="/public/scripts/line-chart.js"></script>-->
+    <!--<script src="/public/scripts/stock-chart.js"></script>-->
+    <!--<script src="/public/scripts/editor.js"></script>-->
+    <!--<script src="/public/scripts/scheduler.js"></script>-->
+    <!--<script src="/public/scripts/dropdownlist.js"></script>-->
+    <!--<script src="/public/scripts/window.js"></script>-->
+    <script src="/public/scripts/upload.js"></script>
+
 </body>
 
 </html>

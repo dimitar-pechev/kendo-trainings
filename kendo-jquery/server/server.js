@@ -24,18 +24,18 @@ router
         return res.status(200).json(players);
     })
     .post('/api/create-new-player', (req, res) => {
-        const player = data.addNewPlayer(req.body.models[0]);
+        const player = data.addNewPlayer(req.body);
         return res.status(201).json(player);
     })
-    .put('/api/edit-player', (req, res) => {
-        const player = req.body.models[0];
-        data.editPlayerByJerseyNumber(player);
-        return res.status(200).json(player);
+    .put('/api/edit-player', (req, res) => {     
+        const player = req.body;
+        data.editPlayer(player);
+        return res.status(200).json({});
     })
     .delete('/api/delete-player', (req, res) => {
-        const player = req.body.models[0];
-        data.removePlayerByJerseyNumber(player.id);
-        return res.status(200).json();
+        const playerId = req.body.id;
+        data.removePlayer(playerId);
+        return res.status(200).json({});
     })
     .get('*', (req, res) => {
         res.status(200).sendFile(path.join(__dirname + '/../client/index.html'));

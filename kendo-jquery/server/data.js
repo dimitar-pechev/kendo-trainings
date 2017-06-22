@@ -265,23 +265,23 @@ module.exports = () => {
                 });
             }
 
-            // if (take) {
-            //     result = result.slice(skip, skip + take);
-            // }
+            if (take) {
+                result = result.slice(skip, skip + take);
+            }
 
             const total = data.length;
-            
+
             return {
                 data: result,
                 total
             };
         },
-        editPlayerByJerseyNumber(newPlayerData) {
+        editPlayer(newPlayerData) {
             let player = data.find(x => x.id == newPlayerData.id);
             let index = data.indexOf(player);
             data[index] = newPlayerData;
         },
-        removePlayerByJerseyNumber(id) {
+        removePlayer(id) {
             let player = data.find(x => x.id == id);
             let index = data.indexOf(player);
             data.splice(index, 1);
@@ -289,7 +289,9 @@ module.exports = () => {
         addNewPlayer(player) {
             player.id = +data[data.length - 1].id + 1;
             data.push(player);
-            return player;
+            return {
+                data: player
+            };
         }
     };
 };
