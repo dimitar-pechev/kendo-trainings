@@ -16,3 +16,7 @@
     line-height: 32px;
     padding-left: 3px;
 }
+
+#tree-view .k-image {
+    width: 30px;
+}

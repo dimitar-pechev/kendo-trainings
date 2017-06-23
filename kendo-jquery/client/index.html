@@ -21,7 +21,7 @@
 <body>
 
     <div id="grid"></div>
-    <script id="template" type="text/x-kendo-template">
+    <script id="template" type="text/x-handlebars-template">
         <div class="player-photo" style="background-image: url('https://s3.amazonaws.com/catjira2-production/user_profiles/images/000/000/731/medium/default-profile-5.png')"></div>
         <div class="player-name">#: data.name #</div>
     </script>
@@ -35,7 +35,6 @@
     <div id="scheduler"></div>
 
     <select style="display: none" id="dropdownlist"></select>
-
     <script id="dropdown-no-data" type="text/template">
         <strong>No Data...</strong>
     </script>
@@ -47,6 +46,8 @@
 
     <input style="display: none" id="upload" type="file">
 
+    <div id="tree-view"></div>
+
     <!--<script src="/public/scripts/grid-chart-combo.js"></script>-->
     <!--<script src="/public/scripts/grid.js"></script>-->
     <!--<script src="/public/scripts/line-chart.js"></script>-->
@@ -55,7 +56,8 @@
     <!--<script src="/public/scripts/scheduler.js"></script>-->
     <!--<script src="/public/scripts/dropdownlist.js"></script>-->
     <!--<script src="/public/scripts/window.js"></script>-->
-    <script src="/public/scripts/upload.js"></script>
+    <!--<script src="/public/scripts/upload.js"></script>-->
+    <script src="/public/scripts/treeview.js"></script>
 
 </body>
 
