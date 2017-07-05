@@ -1,3 +1,4 @@
+import { PlayerProfileComponent } from './../components/player-profile/player-profile.component';
 import { ChartSettings } from './../models/chart-settings.model';
 import { GridSettings } from './../models/grid-settings.model';
 import { Injectable, ViewContainerRef, ReflectiveInjector, ComponentFactoryResolver } from '@angular/core';

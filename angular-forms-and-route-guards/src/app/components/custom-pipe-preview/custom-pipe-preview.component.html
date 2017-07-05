@@ -1,0 +1,20 @@
+<p>Sorted Strings</p>
+<ul>
+	<li *ngFor="let str of (strings | sort:'desc')">
+		{{str}}
+	</li>
+</ul>
+
+<p>Sorted Dates</p>
+<ul>
+	<li *ngFor="let date of (dates | sort:'desc')">
+		{{date}}
+	</li>
+</ul>
+
+<p>Sorted Numbers</p>
+<ul>
+	<li *ngFor="let num of (numbers | sort:'desc')">
+		{{num}}
+	</li>
+</ul>

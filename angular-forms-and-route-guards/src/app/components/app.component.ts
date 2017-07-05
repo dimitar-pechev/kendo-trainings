@@ -6,7 +6,7 @@ import { Component, OnInit, DoCheck } from '@angular/core';
 	selector: 'app-root',
 	templateUrl: './app.component.html'
 })
-export class AppComponent implements OnInit, DoCheck {
+export class AppComponent implements OnInit {
 	isLoggedIn: boolean;
 	isAdmin: boolean;
 	title: string;
@@ -14,13 +14,14 @@ export class AppComponent implements OnInit, DoCheck {
 	constructor(private authService: AuthService, private router: Router) { }
 
 	ngOnInit() {
-		this.isLoggedIn = this.authService.isLoggedIn();
-		this.isAdmin = this.authService.isAdmin();
-	}
+		this.authService.checkLogin()
+			.subscribe(isLoggedIn => {
+				this.isLoggedIn = isLoggedIn;
+			});
 
-	ngDoCheck() {
-		this.isLoggedIn = this.authService.isLoggedIn();
 		this.isAdmin = this.authService.isAdmin();
+
+		this.authService.verifyUser();
 	}
 
 	logout() {

@@ -1,13 +1,17 @@
+import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map'
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class AuthService {
 	private baseUrl: string;
+	private isLoggedIn: Subject<boolean>;
 
 	constructor(private http: Http) {
 		this.baseUrl = 'api/users';
+		this.isLoggedIn = new Subject<boolean>();
 	}
 
 	getAllUsers(take: number, skip: number) {
@@ -28,6 +32,7 @@ export class AuthService {
 			.map(result => {
 				result = result.json().data;
 				localStorage.setItem('user', JSON.stringify(result));
+				this.verifyUser();
 				return result;
 			});
 	}
@@ -42,6 +47,7 @@ export class AuthService {
 					return false;
 				} else {
 					localStorage.setItem('user', JSON.stringify(data[0]));
+					this.verifyUser();
 					return true;
 				}
 			});
@@ -52,13 +58,8 @@ export class AuthService {
 		return user;
 	}
 
-	isLoggedIn() {
-		const user = localStorage.getItem('user');
-		if (!user) {
-			return false;
-		}
-
-		return true;
+	checkLogin() {
+		return this.isLoggedIn.asObservable();
 	}
 
 	isAdmin() {
@@ -68,5 +69,9 @@ export class AuthService {
 		}
 
 		return true;
+	}
+
+	verifyUser() {
+		this.isLoggedIn.next(!!localStorage.getItem('user'));
 	}
 }

@@ -27,6 +27,9 @@ import { PlayersGridComponent } from './components/players-grid/players-grid.com
 import { ChartPartialComponent } from './components/positions-chart/chart-partial.component';
 import { PlayersStatsComponent } from './components/players-stats/players-stats.component';
 import { PlayerProfileComponent } from './components/player-profile/player-profile.component';
+import { SortPipe } from './pipes/sort.pipe';
+import { CustomPipePreviewComponent } from './components/custom-pipe-preview/custom-pipe-preview.component';
+import { AnimationsComponent } from './components/animations/animations.component';
 
 @NgModule({
 	declarations: [
@@ -39,7 +42,10 @@ import { PlayerProfileComponent } from './components/player-profile/player-profi
 		PlayersGridComponent,
 		ChartPartialComponent,
 		PlayersStatsComponent,
-		PlayerProfileComponent
+		PlayerProfileComponent,
+		SortPipe,
+		CustomPipePreviewComponent,
+		AnimationsComponent
 	],
 	entryComponents: [
 		PlayersGridComponent,

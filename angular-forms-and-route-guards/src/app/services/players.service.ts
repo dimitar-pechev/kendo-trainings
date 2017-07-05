@@ -3,6 +3,7 @@ import { Http, Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/observable/of';
 import { SortDescriptor } from '@progress/kendo-data-query/dist/es/sort-descriptor';
+import { Observer } from 'rxjs/Observer';
 
 const cache = {};
 const headers = new Headers({ 'X-Auth-Token': 'd0063ff1d3264556a92143db04f9b24a' });

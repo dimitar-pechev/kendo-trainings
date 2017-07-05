@@ -3,7 +3,6 @@ import { GridSettings } from './../../models/grid-settings.model';
 import { SortDescriptor } from '@progress/kendo-data-query/dist/es/sort-descriptor';
 import { PartialItem } from './../../models/partial-item.model';
 import { PartialsService } from './../../services/partials.service';
-import { partialsSettings } from '../../models'
 import {
 	Component,
 	OnInit,

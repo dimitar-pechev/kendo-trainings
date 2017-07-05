@@ -8,6 +8,7 @@ export class UserGuardService implements CanActivate {
 	constructor(private router: Router, private authService: AuthService) { }
 
 	canActivate() {
-		return this.authService.isLoggedIn();
+		return !!localStorage.getItem('user');
+		// return this.authService.checkLogin();
 	}
 }

@@ -1,0 +1,4 @@
+<button [@buttonState]="btnState" (click)="toggleButtonState()" class="btn btn-danger">Change Buttons State</button>
+<button [@buttonState]="btnState" (click)="toggleHeadingState()" class="btn btn-success pull-right">Change Heading State</button>
+
+<h1 [@headingState]="'in'" *ngIf="hidden" class="text-center">виждал съм, но няма</h1>

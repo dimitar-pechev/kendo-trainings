@@ -1,3 +1,5 @@
+import { AnimationsComponent } from './components/animations/animations.component';
+import { CustomPipePreviewComponent } from './components/custom-pipe-preview/custom-pipe-preview.component';
 import { PlayerProfileComponent } from './components/player-profile/player-profile.component';
 import { PlayersStatsComponent } from './components/players-stats/players-stats.component';
 import { UserGuardService } from './guards/user.guard';
@@ -14,6 +16,8 @@ const routes: Routes = [
 	{ path: 'home', component: HomeComponent },
 	{ path: 'stats/players/:id', component: PlayerProfileComponent },
 	{ path: 'stats/:tab', component: PlayersStatsComponent },
+	{ path: 'pipes', component: CustomPipePreviewComponent },
+	{ path: 'animations', component: AnimationsComponent },
 	{ path: 'register', component: RegisterComponent },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'profile', component: ProfileComponent, canActivate: [UserGuardService] },
