@@ -1,0 +1,24 @@
+<h1 class="text-center">User Management</h1>
+
+<kendo-grid #grid [data]="data" 
+				  [pageSize]="state.take" 
+				  [skip]="state.skip" 
+				  [sort]="state.sort" 
+				  [sortable]="sortable" 
+				  [pageable]="pageable"
+ 				  (dataStateChange)="dataStateChange($event)">
+
+	<kendo-grid-messages [noRecords]="noRecordsMessage">
+	</kendo-grid-messages>
+
+	<kendo-grid-column field="id" width="70" class="text-center" title="ID"></kendo-grid-column>
+	<kendo-grid-column field="username" class="text-center" title="Username"></kendo-grid-column>
+	<kendo-grid-column field="fullName" title="Full name"></kendo-grid-column>
+	<kendo-grid-column field="email" title="E-Mail"></kendo-grid-column>
+	<kendo-grid-column field="admin" editor="integer" [width]="75" class="text-center" title="Status">
+		<ng-template kendoGridCellTemplate let-dataItem>
+			<span>{{dataItem.admin ? 'Admin' : 'User'}}</span>
+		</ng-template>
+	</kendo-grid-column>
+
+</kendo-grid>
