@@ -1,6 +1,7 @@
+import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
-import { Injectable } from '@angular/core';
+import 'rxjs/add/operator/map'
 
 @Injectable()
 export class AuthService {

@@ -1,3 +1,4 @@
+import { UsersModule } from './modules/users/users.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
@@ -14,11 +15,12 @@ import { CoreModule } from './modules/core/core.module';
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
-		AppRoutingModule,
-		ReactiveFormsModule,
 		HttpModule,
-		CoreModule
+		CoreModule,
+		AppRoutingModule
 	],
-	bootstrap: [AppComponent]
+	bootstrap: [
+		AppComponent
+	]
 })
 export class AppModule { }

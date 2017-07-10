@@ -32,9 +32,9 @@ export class PlayersStatsComponent implements OnInit, OnDestroy {
 	ngOnInit() {
 		this.componentsCache = {};
 		this.partials = this.partialsService.getPartials();
-		this.route.params
-			.subscribe(params => {
-				const targetPartial = this.partials.find(p => p.routeValue === params.tab);
+		this.route.paramMap
+			.subscribe(paramMap => {
+				const targetPartial = this.partials.find(p => p.routeValue === paramMap.get('tab'));
 				this.partialsService.loadPartial(targetPartial || this.partials[0], this.viewContainerRef, this.componentsCache);
 			});
 	}

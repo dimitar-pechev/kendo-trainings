@@ -5,7 +5,6 @@ import { Component, OnInit } from '@angular/core';
 import { CustomValidators } from '../../utils/custom-validators';
 
 @Component({
-	selector: 'app-register',
 	templateUrl: './register.component.html'
 })
 export class RegisterComponent implements OnInit {

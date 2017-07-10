@@ -1,7 +1,11 @@
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+import { ActivatedRoute } from '@angular/router';
 import { State } from '@progress/kendo-data-query/dist/es/state';
 import { GridDataResult } from '@progress/kendo-angular-grid';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './../../../core/services/auth.service';
+import 'rxjs/add/observable/interval';
 
 @Component({
 	selector: 'app-admin',
@@ -14,9 +18,11 @@ export class AdminComponent implements OnInit {
 	sortable: boolean;
 	noRecordsMessage: string;
 
-	constructor(private authService: AuthService) { }
+	constructor(private authService: AuthService, private route: ActivatedRoute) { }
 
 	ngOnInit() {
+		this.route.data.subscribe(data => this.data = data[0]);
+
 		this.state = {
 			skip: 0,
 			take: 10
@@ -24,7 +30,6 @@ export class AdminComponent implements OnInit {
 		this.pageable = true;
 		this.sortable = true;
 		this.noRecordsMessage = 'Loading users data...';
-		this.loadUsersData();
 	}
 
 	dataStateChange(state) {

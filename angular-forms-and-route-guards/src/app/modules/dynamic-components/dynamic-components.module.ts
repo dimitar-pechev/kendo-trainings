@@ -14,9 +14,9 @@ import { DynamicComponentsRoutingModule } from './dynamic-components.routing';
 @NgModule({
 	imports: [
 		CommonModule,
-		DynamicComponentsRoutingModule,
 		GridModule,
-		ChartsModule
+		ChartsModule,
+		DynamicComponentsRoutingModule
 	],
 	declarations: [
 		PlayerProfileComponent,
